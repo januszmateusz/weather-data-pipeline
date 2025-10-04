@@ -2,7 +2,7 @@ import os
 import time
 import requests
 from dotenv import load_dotenv
-from typing import Optional
+from typing import Any
 
 #Load environment variables
 load_dotenv()
@@ -16,7 +16,7 @@ def get_current_weather(
     max_retries: int = 3, 
     timeout: int = 10,
     debug: bool = False
-    ) -> Optional[dict]:
+    ) -> dict[str, Any]:
 
     """
     Fetch current weather data for a given city from OpenWeatherMap API
@@ -78,16 +78,27 @@ def get_current_weather(
             else:
                 raise WeatherAPIError(f"HTTP Error: {e}")
         
+        except requests.exceptions.ConnectionError as e:
+            print(f"Connection error on attempt {attempt + 1}/{max_retries}")
+            if attempt == max_retries - 1:
+                raise WeatherAPIError("Connection error. Check your internet connection.")
+            time.sleep(2 ** attempt)
+
         except requests.exceptions.RequestException as e:
             raise WeatherAPIError(f"Request failed: {e}")
-    
+
     raise WeatherAPIError("Unexpected: all retries exhausted")
 
 #TEST:
 if __name__ == "__main__":
     #Test normal case
-    data = get_current_weather("Warsaw", debug=True)
-    print (f"Temperature in Warsaw: {data['main']['temp']}  ℃")
+    try:
+        data = get_current_weather("Warsaw", debug=False)
+        print (f"Temperature in Warsaw: {data['main']['temp']} Celsius degrees")
+    except WeatherAPIError as e:
+        print(f"Error: {e}")
+
+    print("\n" + "=" * 50 + "\n") #Separator
 
     #Test error case:
     try:
