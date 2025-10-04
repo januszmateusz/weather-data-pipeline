@@ -1,0 +1,10 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "python.envFile": "${workspaceFolder}/.env",
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "${workspaceFolder};${env:PYTHONPATH}"
+  },
+  "python.terminal.executeInFileDir": false
+}
