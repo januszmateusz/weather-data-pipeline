@@ -23,6 +23,9 @@ def weather_json_to_dataframe(weather_data: Dict[str, Any]) -> pd.DataFrame:
 
     #Extract relevant fields
     try:
+        weather_list = weather_data.get('weather', [])
+        weather_description = weather_list[0].get('description', 'Unknown') if weather_list else 'Unknown'
+
         transformed = {
             'timestamp': datetime.fromtimestamp(weather_data.get('dt', datetime.now().timestamp())),
             'city': weather_data.get('name', 'Unknown'),
@@ -33,7 +36,7 @@ def weather_json_to_dataframe(weather_data: Dict[str, Any]) -> pd.DataFrame:
             'temp_max': weather_data.get('main', {}).get('temp_max'),
             'pressure': weather_data.get('main', {}).get('pressure'),
             'humidity': weather_data.get('main', {}).get('humidity'),
-            'weather_description': weather_data.get('weather', [{}])[0].get('description', 'Unknown'),
+            'weather_description': weather_description,
             'wind_speed': weather_data.get('wind', {}).get('speed'),
             'clouds': weather_data.get('clouds', {}).get('all')
         }
