@@ -1,8 +1,8 @@
 import pandas as pd
 from datetime import datetime
-from typing import Dict, List
+from typing import List, Dict, Any
 
-def weather_json_to_dataframe(weather_data: dict) -> pd.DataFrame:
+def weather_json_to_dataframe(weather_data: Dict[str, Any]) -> pd.DataFrame:
     """
     Transform weather API JSON to pandas Data Frame.
     
@@ -13,27 +13,39 @@ def weather_json_to_dataframe(weather_data: dict) -> pd.DataFrame:
         pd.DataFrame: Transformed weather data
     """
 
+    #Input data validation:
+    if not weather_data:
+        raise ValueError("weather_data cannot be None or empty")
+    
+    if not isinstance(weather_data, dict):
+        raise ValueError(f"weather data must be dict, got {type(weather_data)}")
+    
+
     #Extract relevant fields
-    transformed = {
-        'timestamp': datetime.now(),
-        'city':weather_data['name'],
-        'country':weather_data['sys']['country'],
-        'temperature':weather_data['main']['temp'],
-        'feels_like':weather_data['main']['feels_like'],
-        'temp_min':weather_data['main']['temp_min'],
-        'temp_max':weather_data['main']['temp_max'],
-        'pressure':weather_data['main']['pressure'],
-        'humidity':weather_data['main']['humidity'],
-        'weather_description':weather_data['weather'][0]['description'],
-        'wind_speed':weather_data['wind']['speed'],
-        'clouds':weather_data['clouds']['all']
-    }
+    try:
+        transformed = {
+            'timestamp': datetime.fromtimestamp(weather_data.get('dt', datetime.now().timestamp())),
+            'city': weather_data.get('name', 'Unknown'),
+            'country': weather_data.get('sys', {}).get('country', 'Unknown'),
+            'temperature': weather_data.get('main', {}).get('temp'),
+            'feels_like': weather_data.get('main', {}).get('feels_like'),
+            'temp_min': weather_data.get('main', {}).get('temp_min'),
+            'temp_max': weather_data.get('main', {}).get('temp_max'),
+            'pressure': weather_data.get('main', {}).get('pressure'),
+            'humidity': weather_data.get('main', {}).get('humidity'),
+            'weather_description': weather_data.get('weather', [{}])[0].get('description', 'Unknown'),
+            'wind_speed': weather_data.get('wind', {}).get('speed'),
+            'clouds': weather_data.get('clouds', {}).get('all')
+        }
+    except (KeyError, IndexError, TypeError) as e:
+        raise ValueError(f"Invalid weather data structure: {e}")
+
 
     #Create DataFrame with single row
     df = pd.DataFrame([transformed])
     return df
 
-def batch_transform(weather_data_list: List[dict]) -> pd.DataFrame:
+def batch_transform(weather_data_list: List[Dict[str, Any]]) -> pd.DataFrame:
     """
     Transform multiple weather records to single DataFrame.
 
@@ -48,22 +60,43 @@ def batch_transform(weather_data_list: List[dict]) -> pd.DataFrame:
     return pd.concat(dfs, ignore_index=True)
 
 if __name__ == '__main__':
-    from src.extractors.whather_api import get_current_weather 
+    from src.extractors.weather_api import get_current_weather
 
-    #Get weather for multiple cities
-    cities = ['Warsaw', 'London', 'New York', 'Tokyo', 'Sydney', 'Turin']
+    print("🌤️  Weather Data Transformer Test\n")
+    
+    cities = ['Warsaw', 'London', 'New York', 'Tokyo', 'Sydney', 'Los Angeles', 'Turin']
+    
+    print(f"Fetching weather for {len(cities)} cities...")
     weather_data = [get_current_weather(city) for city in cities]
-
-    #Transform to DataFrame
+    print("✓ Data fetched!\n")
+    
     df = batch_transform(weather_data)
-
-    #Explore the data
-    print(df.head())
-    print("\nDataFrame Info:")
-    print(df.info())
-    print("\nStatistics:")
-    print(df.describe())
-
-    #Example: Filter cities with temp > 15 C
+    
+    pd.set_option('display.max_columns', None)
+    pd.set_option('display.width', None)
+    
+    print("="*70)
+    print("DATAFRAME HEAD (First 10 rows)")
+    print("="*70)
+    print(df.head(10).to_string())
+    
+    print("\n" + "="*70)
+    print("DATAFRAME INFO")
+    print("="*70)
+    df.info()
+    
+    print("\n" + "="*70)
+    print("STATISTICS")
+    print("="*70)
+    print(df.describe().to_string())
+    
+    print("\n" + "="*70)
+    print("CITIES WARMER THAN 15°C")
+    print("="*70)
     warm_cities = df[df['temperature'] > 15]
-    print(f"\nCities warmer than 15 C:\n{warm_cities[['city', 'temperature']]}")
+    if len(warm_cities) > 0:
+        print(warm_cities[['city', 'temperature']].to_string(index=False))
+    else:
+        print("No cities warmer than 15°C found.")
+    
+    print("\n✅ Transform test completed!")
