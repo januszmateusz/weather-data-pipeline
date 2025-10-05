@@ -1,0 +1,13 @@
+timestamp,city,country,temperature,feels_like,temp_min,temp_max,pressure,humidity,weather_description,wind_speed,clouds
+2025-10-05 09:23:53,Warsaw,PL,10.24,9.59,9.39,11.55,1005,87,few clouds,5.14,20
+2025-10-05 09:20:31,Krakow,PL,8.93,6.2,8.88,11.08,1008,53,clear sky,5.14,0
+2025-10-05 09:19:35,Gdańsk,PL,9.96,7.3,9.24,10.05,1000,93,overcast clouds,5.66,100
+2025-10-05 09:22:57,Rzeszów,PL,9.01,6.73,9.01,9.01,1008,87,broken clouds,4.12,75
+2025-10-05 09:20:15,London,GB,10.88,10.01,9.47,11.86,1013,76,broken clouds,6.17,55
+2025-10-05 09:14:23,Paris,FR,10.34,9.75,9.09,11.1,1017,89,broken clouds,5.14,75
+2025-10-05 09:15:43,Berlin,DE,10.85,10.18,9.99,11.66,1003,84,broken clouds,8.05,75
+2025-10-05 09:21:27,New York,US,18.98,18.97,16.66,20.12,1023,78,clear sky,2.57,0
+2025-10-05 09:21:43,Los Angeles,US,17.71,17.63,16.33,18.84,1009,80,clear sky,2.06,0
+2025-10-05 09:18:17,Chicago,US,22.21,22.21,21.23,23.04,1018,66,clear sky,4.12,0
+2025-10-05 09:20:39,Tokyo,JP,27.52,29.55,26.48,28.13,1011,68,broken clouds,5.14,75
+2025-10-05 09:20:02,Sydney,AU,25.2,25.06,23.16,29.94,1013,49,light rain,6.17,54

@@ -50,3 +50,24 @@ def test_empty_weather_array():
     # weather_description shuld be 'Unknown' or None
     assert df.loc[0, 'weather_description'] in ['Unknown', None] or \
            pd.isna(df.loc[0, 'weather_description'])
+
+def test_invalid_type_string():
+    invalid_input = "Invalid string"
+
+    with pytest.raises(ValueError) as exc_info:
+        weather_json_to_dataframe(invalid_input)
+    
+    error_message = str(exc_info.value)
+    assert "must be dict" in error_message
+    assert "str" in error_message
+
+def test_invalid_None_type():
+    invalid_input = None
+
+    with pytest.raises(ValueError) as exc_info:
+        weather_json_to_dataframe(invalid_input)
+    
+    error_message = str(exc_info.value)
+    assert "cannot be None or empty" in error_message
+
+

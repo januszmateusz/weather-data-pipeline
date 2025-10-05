@@ -2,7 +2,7 @@ import os
 import time
 import requests
 from dotenv import load_dotenv
-from typing import Any
+from typing import Dict, Any
 
 #Load environment variables
 load_dotenv()
@@ -16,7 +16,7 @@ def get_current_weather(
     max_retries: int = 3, 
     timeout: int = 10,
     debug: bool = False
-    ) -> dict[str, Any]:
+    ) -> Dict[str, Any]:
 
     """
     Fetch current weather data for a given city from OpenWeatherMap API
@@ -32,6 +32,11 @@ def get_current_weather(
     
     Raises:
         WeatherAPIError: If the API call fails after max_retries
+
+    Example:
+        >>> weather = get_current_weather("Warsaw")
+        >>> print(weather['main]['temp'])
+        15.5
     """
 
     api_key = os.getenv("WEATHER_API_KEY")
@@ -70,6 +75,7 @@ def get_current_weather(
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 404:
                 raise WeatherAPIError(f"City '{city}' not found")
+                
             elif e.response.status_code >=500:
                 print(f"Server error on attempt {attempt+1}/{max_retries}")
                 if attempt == max_retries - 1:
