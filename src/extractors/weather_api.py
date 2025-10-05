@@ -3,6 +3,13 @@ import time
 import requests
 from dotenv import load_dotenv
 from typing import Dict, Any
+from src.utils.config import (
+    WEATHER_API_BASE_URL,
+    API_TIMEOUT,
+    MAX_RETRIES,
+    TEMPERATURE_UNIT
+)
+
 
 #Load environment variables
 load_dotenv()
@@ -13,8 +20,8 @@ class WeatherAPIError(Exception):
 
 def get_current_weather(
     city: str, 
-    max_retries: int = 3, 
-    timeout: int = 10,
+    max_retries: int = MAX_RETRIES, 
+    timeout: int = API_TIMEOUT,
     debug: bool = False
     ) -> Dict[str, Any]:
 
@@ -43,12 +50,12 @@ def get_current_weather(
     if not api_key:
         raise WeatherAPIError("WEATHER_API_KEY is not set in the environment variables")
 
-    base_url = "https://api.openweathermap.org/data/2.5/weather"
+    base_url = WEATHER_API_BASE_URL
 
     params = {
         'q': city,
         'appid': api_key,
-        'units': 'metric'
+        'units': TEMPERATURE_UNIT
     }
 
     for attempt in range(max_retries):
