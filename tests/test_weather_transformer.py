@@ -69,5 +69,3 @@ def test_invalid_None_type():
     
     error_message = str(exc_info.value)
     assert "cannot be None or empty" in error_message
-
-
