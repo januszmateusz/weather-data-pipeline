@@ -32,7 +32,7 @@ def retry_on_exception(max_attempts: int = 3):
                     if attempt == max_attempts - 1:
                         raise
                     logging.warning(f"Attempt {attempt + 1} failed: {e}")
-                    time.sleep(2**attempt)
+                    time.sleep(2 ** attempt)
 
             return None
         return wrapper

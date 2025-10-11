@@ -96,7 +96,7 @@ def detect_temperature_anomalies(
     anomalies = df[abs(df['temperature'] - mean_temp) > (threshold_std * std_temp)].copy()
     anomalies['deviation'] = ((anomalies['temperature'] - mean_temp) / std_temp).round(2)
 
-    return anomalies
+    return anomalies 
 
 #Test with historical data:
 if __name__ == "__main__":

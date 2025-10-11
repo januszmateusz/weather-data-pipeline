@@ -1,13 +1,13 @@
-timestamp,city,country,temperature,feels_like,temp_min,temp_max,pressure,humidity,weather_description,wind_speed,clouds
-2025-10-05 10:32:22,Warsaw,PL,11.11,10.44,9.42,12.58,1006,83,broken clouds,7.2,75
-2025-10-05 10:30:33,Krakow,PL,11.63,10.34,11.1,13.55,1010,57,few clouds,7.2,20
-2025-10-05 10:33:30,Gdańsk,PL,10.47,9.92,9.79,11.35,1001,90,overcast clouds,6.17,100
-2025-10-05 10:35:15,Rzeszów,PL,13.84,13.32,11.01,13.84,1010,78,broken clouds,6.17,75
-2025-10-05 10:31:23,London,GB,12.53,11.67,11.62,13.34,1015,70,few clouds,6.17,22
-2025-10-05 10:26:25,Paris,FR,11.68,11.15,10.77,12.9,1018,86,broken clouds,6.17,75
-2025-10-05 10:28:40,Berlin,DE,12.35,11.78,11.71,12.77,1004,82,broken clouds,10.73,75
-2025-10-05 10:34:29,New York,US,18.38,18.31,15.97,19.41,1024,78,clear sky,1.79,0
-2025-10-05 10:33:55,Los Angeles,US,17.44,17.33,16.24,18.29,1009,80,clear sky,1.54,0
-2025-10-05 10:32:31,Chicago,US,21.31,21.25,20.1,22.27,1018,67,clear sky,3.09,0
-2025-10-05 10:28:46,Tokyo,JP,26.87,28.72,25.7,27.57,1011,71,broken clouds,5.66,75
-2025-10-05 10:29:14,Sydney,AU,23.7,23.51,21.33,26.53,1013,53,broken clouds,4.12,60
+timestamp,city,country,temperature,feels_like,temp_min,temp_max,pressure,humidity,weather_description,wind_speed,clouds,temp_category,comfort_index
+2025-10-11 13:21:05,Warsaw,PL,13.37,13.19,12.13,14.41,1020,93,broken clouds,5.66,75,mild,65.2
+2025-10-11 13:27:13,Krakow,PL,13.32,12.07,13.11,13.42,1024,52,broken clouds,4.63,75,mild,85.6
+2025-10-11 13:30:16,Gdańsk,PL,14.04,13.82,13.13,14.41,1021,89,broken clouds,6.69,75,mild,68.6
+2025-10-11 13:29:09,Rzeszów,PL,13.01,12.82,13.01,13.01,1022,94,light intensity drizzle,5.66,100,mild,64.0
+2025-10-11 13:25:30,London,GB,14.92,14.24,13.67,16.66,1034,68,broken clouds,1.03,75,mild,80.8
+2025-10-11 13:20:37,Paris,FR,16.09,15.66,15.43,17.25,1033,73,clear sky,4.12,0,mild,80.7
+2025-10-11 13:30:00,Berlin,DE,16.2,15.89,15.55,16.85,1028,77,overcast clouds,7.2,100,mild,78.9
+2025-10-11 13:22:09,New York,US,14.3,13.67,11.76,15.55,1023,72,overcast clouds,3.58,100,mild,77.6
+2025-10-11 13:28:34,Los Angeles,US,18.53,18.32,15.56,20.19,1008,72,clear sky,0.0,0,mild,86.1
+2025-10-11 13:29:09,Chicago,US,14.42,13.77,11.41,15.57,1020,71,few clouds,3.09,20,mild,78.3
+2025-10-11 13:24:18,Tokyo,JP,15.93,16.01,15.33,17.01,1016,93,mist,6.69,75,mild,70.4
+2025-10-11 13:21:55,Sydney,AU,21.4,20.61,19.08,22.35,1012,39,clear sky,2.4,0,warm,91.7
