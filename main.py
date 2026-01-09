@@ -32,10 +32,10 @@ def extract_wheather_data(cities: List[str]) -> List[dict]:
             data = get_current_weather(city)
             if data:
                 weather_data.append(data)
-                print(f"✅ {city}")
+                print(f"[OK] {city}")
         except WeatherAPIError as e:
             failed_cities.append(city)
-            print(f"❌ {city}: {e}")
+            print(f"[FAILED] {city}: {e}")
     print(f"\nExtracted: {len(weather_data)}/{len(cities)} cities")
     return weather_data
 
@@ -55,12 +55,12 @@ def transform_and_validate(weather_data: List[dict]) -> pd.DataFrame:
     is_valid, errors = validator.validate_all()
 
     if not is_valid:
-        print("\n⚠️ Data Quality Issues:")
+        print("\n[WARNING] Data Quality Issues:")
         for error in errors:
             print(f" = {error}")
         raise ValueError("Data validation failed")
     
-    print("✅ Data validation passed")
+    print("[OK] Data validation passed")
 
     #Optimize memory
     df = optimizied_dataframe_memory(df)
@@ -81,10 +81,10 @@ def generate_analytics(df: pd.DataFrame) -> None:
     #Anomalies:
     anomalies = detect_temperature_anomalies(df)
     if len(anomalies) > 0:
-        print(f"\n⚠️ Temperature Anomalies Detected ({len(anomalies)}):")
+        print(f"\n[WARNING] Temperature Anomalies Detected ({len(anomalies)}):")
         print(anomalies[['city', 'temperature', 'deviation']].to_string(index=False))
     else:
-        print("\n✅ No temperature anomalies detected")
+        print("\n[OK] No temperature anomalies detected")
 
 
 
@@ -101,7 +101,7 @@ def run_pipeline(cities: List[str], output_file: str = "weather_data.csv") -> No
         weather_data = extract_wheather_data(cities)
 
         if not weather_data:
-            print("❌ No data collected. Exiting.")
+            print("[FAILED] No data collected. Exiting.")
             return
         
         #Transform & Validate
@@ -115,11 +115,11 @@ def run_pipeline(cities: List[str], output_file: str = "weather_data.csv") -> No
         print(f"\n Data saved to: {output_file}")
 
         print("\n" + "=" * 60)
-        print("✅ PIPELINE COMPLETED SICCESSFULLY")
+        print("[OK] PIPELINE COMPLETED SUCCESSFULLY")
         print("=" * 60)
 
     except Exception as e:
-        print(f"\n❌ pipeline failed: {e}")
+        print(f"\n[FAILED] pipeline failed: {e}")
         raise
 
 if __name__ == "__main__":

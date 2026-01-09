@@ -11,6 +11,6 @@ try:
     # Lista kontenerów
     containers = client.list_containers()
     for container in containers:
-        print(f"✅ Found container: {container.name}")
+        print(f"Found container: {container.name}")
 except Exception as e:
     print(f"Error: {e}")

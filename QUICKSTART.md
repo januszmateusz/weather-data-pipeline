@@ -1,8 +1,8 @@
-# 🚀 Quick Start Guide
+# Quick Start Guide
 
 Get up and running with Weather Data Pipeline in 5 minutes!
 
-## ⚡ 5-Minute Setup
+## 5-Minute Setup
 
 ### Step 1: Get API Key (2 min)
 
@@ -48,20 +48,20 @@ Replace `your_api_key_here` with your actual API key!
 python -m src.main
 ```
 
-✅ **Done!** Check `weather_data.csv` for results.
+**Done!** Check `weather_data.csv` for results.
 
-## 📊 Your First Weather Report
+## Your First Weather Report
 
 After running, you'll see output like:
 
 ```
 Starting pipeline at 2024-10-05 14:30:00
 Fetching weather for 12 cities...
-✅ Warsaw
-✅ Krakow
-✅ London
+[OK] Warsaw
+[OK] Krakow
+[OK] London
 ...
-✅ Tokyo
+[OK] Tokyo
 
 Transforming 12 records...
 Saving to weather_data.csv...
@@ -74,7 +74,7 @@ Output saved to: weather_data.csv
 ==================================================
 ```
 
-## 🎯 Common Use Cases
+## Common Use Cases
 
 ### 1. Get Weather for One City
 
@@ -122,7 +122,7 @@ cities = [
 
 Then run: `python -m src.main`
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Problem: "WEATHER_API_KEY is not set"
 
@@ -148,7 +148,7 @@ source venv/bin/activate  # macOS/Linux
 venv\Scripts\activate     # Windows
 ```
 
-## 📚 Next Steps
+## Next Steps
 
 Now that you're up and running:
 
@@ -158,7 +158,7 @@ Now that you're up and running:
 4. **Run tests:** `pytest`
 5. **Customize** for your needs!
 
-## 💡 Pro Tips
+## Pro Tips
 
 ### Run Every Hour with Cron
 
@@ -188,7 +188,7 @@ except WeatherAPIError as e:
     print(f"Oops! {e}")
 ```
 
-## 🎓 Learning Path
+## Learning Path
 
 **Beginner:**
 - Run the default pipeline
@@ -205,12 +205,12 @@ except WeatherAPIError as e:
 - Create visualizations
 - Contribute new features
 
-## 📞 Need Help?
+## Need Help?
 
-- 📖 Check [README.md](README.md) for detailed docs
-- 🐛 Found a bug? [Open an issue](https://github.com/yourusername/weather-data-pipeline/issues)
-- 💬 Have questions? [Start a discussion](https://github.com/yourusername/weather-data-pipeline/discussions)
+- Check [README.md](README.md) for detailed docs
+- Found a bug? [Open an issue](https://github.com/yourusername/weather-data-pipeline/issues)
+- Have questions? [Start a discussion](https://github.com/yourusername/weather-data-pipeline/discussions)
 
 ---
 
-**Happy weather tracking! 🌤️**
+**Happy weather tracking!**

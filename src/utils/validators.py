@@ -114,8 +114,8 @@ if __name__ == "__main__":
     validator = WeatherDataValidator(df)
     is_valid, errors = validator.validate_all()
     if is_valid:
-        print("✅ All validations passed!")
+        print("[OK] All validations passed!")
     else:
-        print("⚠️ Validation failed:")
+        print("[WARNING] Validation failed:")
         for error in errors:
             print(f" - {error}")

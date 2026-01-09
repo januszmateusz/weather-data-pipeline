@@ -65,7 +65,7 @@ def batch_transform(weather_data_list: List[Dict[str, Any]]) -> pd.DataFrame:
 if __name__ == '__main__':
     from src.extractors.weather_api import get_current_weather
 
-    print("🌤️  Weather Data Transformer Test\n")
+    print("Weather Data Transformer Test\n")
     
     cities = ['Warsaw', 'London', 'New York', 'Tokyo', 'Sydney', 'Los Angeles', 'Turin']
     
@@ -102,4 +102,4 @@ if __name__ == '__main__':
     else:
         print("No cities warmer than 15°C found.")
     
-    print("\n✅ Transform test completed!")
+    print("\n[OK] Transform test completed!")
