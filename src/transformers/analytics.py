@@ -1,7 +1,3 @@
-from operator import index
-import stat
-from turtle import st
-from numpy.ma import anom
 import pandas as pd
 from typing import Dict
 
@@ -52,7 +48,7 @@ def analyze_temperature_trends(df: pd.DataFrame, city: str) -> pd.DataFrame:
     """
 
     #Filter for city
-    city_df  = df[df['city'] == city].copy
+    city_df  = df[df['city'] == city].copy()
 
     #Convert timestamp to datetime
     city_df['timestamp'] = pd.to_datetime(city_df['timestamp'])

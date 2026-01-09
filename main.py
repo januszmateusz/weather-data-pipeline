@@ -19,10 +19,10 @@ from src.utils.functional import(
     transform_weather_records,
     timeit
 )
-from src.utils.performance import optimizied_dataframe_memory
+from src.utils.performance import optimized_dataframe_memory
 
 @timeit
-def extract_wheather_data(cities: List[str]) -> List[dict]:
+def extract_weather_data(cities: List[str]) -> List[dict]:
     """Extract weather data for multiple cities."""
     weather_data = []
     failed_cities = []
@@ -63,14 +63,14 @@ def transform_and_validate(weather_data: List[dict]) -> pd.DataFrame:
     print("[OK] Data validation passed")
 
     #Optimize memory
-    df = optimizied_dataframe_memory(df)
+    df = optimized_dataframe_memory(df)
     return df
 
 @timeit
 def generate_analytics(df: pd.DataFrame) -> None:
     """Generate and display analytics"""
     print("\n" + "=" * 60)
-    print("ANALYTICS SUMMURY")
+    print("ANALYTICS SUMMARY")
     print("*" * 60)
 
     #City statistics:
@@ -98,7 +98,7 @@ def run_pipeline(cities: List[str], output_file: str = "weather_data.csv") -> No
 
     try:
         #Extract
-        weather_data = extract_wheather_data(cities)
+        weather_data = extract_weather_data(cities)
 
         if not weather_data:
             print("[FAILED] No data collected. Exiting.")

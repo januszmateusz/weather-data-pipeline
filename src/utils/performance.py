@@ -3,7 +3,7 @@ import pandas as pd
 from typing import Iterator
 import numpy as np
 
-def optimizied_dataframe_memory(df: pd.DataFrame) -> pd.DataFrame:
+def optimized_dataframe_memory(df: pd.DataFrame) -> pd.DataFrame:
     """
     Optimize DataFrame memory usage.
 
@@ -90,7 +90,7 @@ if __name__ =='__main__':
     print(f"Original memoery usage: {df.memory_usage(deep=True).sum()/1024**2:.2f} MB")
 
     #Optimize
-    df_opt = optimizied_dataframe_memory(df)
+    df_opt = optimized_dataframe_memory(df)
     print(f"Original memoery usage: {df_opt.memory_usage(deep=True).sum()/1024**2:.2f} MB")
 
     #Vectorized calculation

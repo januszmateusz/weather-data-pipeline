@@ -24,7 +24,7 @@ class WeatherDataValidator:
     
     def validate_no_nulls(self, columns: List[str]) -> bool:
         """Check for null values in specified columns."""
-        has_nulls = True
+        is_valid = True
         for col in columns:
             if col in self.df.columns:
                 null_count = self.df[col].isnull().sum()
@@ -32,8 +32,8 @@ class WeatherDataValidator:
                     self.errors.append(
                         f"Column '{col}' has {null_count} null values"
                     )
-                    has_nulls = False
-        return has_nulls
+                    is_valid = False
+        return is_valid
 
     def validate_temperature_range(
         self,
@@ -66,7 +66,7 @@ class WeatherDataValidator:
 
         if len(out_of_range) > 0:
             self.errors.append(
-            f"Found {len(out_of_range)} humidity values of range [0, 100]"
+            f"Found {len(out_of_range)} humidity values out of range [0, 100]"
             )
             return False
         return True
